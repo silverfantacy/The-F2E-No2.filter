@@ -1,0 +1,134 @@
+body {
+  font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Microsoft JhengHei", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  text-align: justify;
+  text-justify: auto;
+  background-color: $gray-1;
+  line-height: 1.5rem;
+}
+
+.sidebar-px {
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+}
+
+/*==== header ====*/
+
+header {
+  height: 92px;
+}
+
+// search
+i {
+  color: $white;
+  position: absolute;
+  font-size: 20px;
+}
+
+input[type="search"] {
+  min-width: 388px;
+  height: 44px;
+  padding: 8px 0rem 8px 40px;
+  line-height: 44px;
+  color: $white;
+  background: none;
+  margin-right: 8px;
+  font-size: 20px;
+  font-style: italic;
+  font-weight: 300;
+  border: none;
+  border-bottom: 1px solid $white;
+  border-radius: 0px;
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.50);
+  }
+  &:focus {
+    background: none;
+    color: $white;
+    border-radius: none;
+  }
+}
+
+/*==== main ====*/
+
+// sidebar
+.sidebar {
+  flex: 0 0 300px;
+  background: $gray-2;
+  select,
+  input {
+    color: $black;
+    font-weight: 400;
+    border-radius: 2px;
+    border: 0px;
+  }
+}
+
+.border-bottom {
+  border-bottom: 1px solid $gray-3;
+}
+
+.form-group {
+  label {
+    font-weight: bold;
+    font-size: 1.25rem;
+    color: $black;
+  }
+}
+
+.date>.form-group.d-flex {
+  label {
+    font-size: 1rem;
+    font-weight: 400;
+    color: $black;
+    text-align: right;
+  }
+  input {
+    width: 170px;
+  }
+}
+
+.categories {
+  .form-check {
+    padding: 0;
+    &>label {
+      font-size: 1rem;
+      font-weight: 400;
+      color: $black;
+      margin-bottom: 2px;
+      &::before {
+        content: "";
+        display: inline-block;
+        width: 1rem;
+        height: 1rem;
+        background: $white;
+        vertical-align: middle;
+        margin-right: 6px;
+        transform: translateY(-2px);
+        transition: background ease-in .1s;
+      }
+    }
+    input[type="checkbox"] {
+      display: none;
+    }
+    input[type="checkbox"]+label {
+      display: inline-block;
+      text-align: left;
+    }
+    input[type="checkbox"]:checked+label::before {
+      background-image: url(../images/check.svg);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: 80%;
+      background-color: $primary;
+    }
+  }
+}
+
+// section
+section {
+  height: 500px;
+  font-size: 1rem;
+  font-weight: 400;
+  color: $black;
+  text-align: right;
+}

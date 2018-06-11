@@ -1,5 +1,4 @@
 .vscode
 node_modules
 public
-_firebase.js
 .publish

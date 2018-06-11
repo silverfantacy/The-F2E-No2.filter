@@ -20,14 +20,23 @@ gulp.task('clean', () => {
     .pipe($.clean());
 });
 
+gulp.task('pug', function () {
+  gulp.src('./source/**/*.pug') // 传入管道的文件
+    .pipe($.plumber())
+    .pipe($.pug({
+      pretty: true // 默认为false，表示是否美化HTML
+    }))
+    .pipe(gulp.dest('./public')); // dest:destination
+});
+
 gulp.task('vendorJs', function () {
   return gulp.src([
     './node_modules/jquery/dist/jquery.slim.min.js',
     './node_modules/bootstrap/dist/js/bootstrap.bundle.min.js',
     './source/javascripts/helpers/main.js'
   ])
-  .pipe($.concat('vendor.js'))
-  .pipe(gulp.dest('./public/javascripts'))
+    .pipe($.concat('vendor.js'))
+    .pipe(gulp.dest('./public/javascripts'))
 })
 
 gulp.task('sass', function () {
@@ -41,7 +50,7 @@ gulp.task('sass', function () {
   return gulp.src(['./source/stylesheets/**/*.sass', './source/stylesheets/**/*.scss'])
     .pipe($.plumber())
     .pipe($.sourcemaps.init())
-    .pipe($.sass({ 
+    .pipe($.sass({
       outputStyle: 'nested',
       includePaths: ['./node_modules/bootstrap/scss']
     })
@@ -56,7 +65,7 @@ gulp.task('sass', function () {
 });
 
 gulp.task('copy', function () {
-  gulp.src(['./source/**/**', '!source/stylesheets/**/**', '!source/javascripts/**/**'])
+  gulp.src(['./source/**/**', '!source/**/*.pug', '!source/stylesheets/**/**', '!source/javascripts/**/**'])
     .pipe(gulp.dest('./public/'))
     .pipe(browserSync.reload({
       stream: true
@@ -71,6 +80,7 @@ gulp.task('browserSync', function () {
 });
 
 gulp.task('watch', function () {
+  gulp.watch(['./source/**/*.pug'], ['pug']);
   gulp.watch(['./source/stylesheets/**/*.sass', './source/stylesheets/**/*.scss'], ['sass']);
   gulp.watch(['./source/javascripts/**/*.js'], ['vendorJs']);
   gulp.watch(['./source/**/**', '!/source/stylesheets/**/**'], ['copy']);
@@ -81,7 +91,7 @@ gulp.task('deploy', function () {
     .pipe($.ghPages());
 });
 
-gulp.task('sequence', gulpSequence('clean', 'copy', 'sass', 'vendorJs', 'sass'));
+gulp.task('sequence', gulpSequence('clean', 'copy', 'pug', 'sass', 'vendorJs', 'sass'));
 
-gulp.task('default', ['copy', 'sass', 'vendorJs', 'browserSync', 'watch']);
+gulp.task('default', ['copy', 'pug', 'sass', 'vendorJs', 'browserSync', 'watch']);
 gulp.task('build', ['sequence'])
