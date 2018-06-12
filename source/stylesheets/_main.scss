@@ -6,15 +6,28 @@ body {
   line-height: 1.5rem;
 }
 
-.sidebar-px {
+.block-px {
   padding-left: 2.5rem;
   padding-right: 2.5rem;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+ul {
+  list-style-type: none;
 }
 
 /*==== header ====*/
 
 header {
   height: 92px;
+}
+
+// .logo
+.logo {
+  flex: 0 0 300px;
 }
 
 // search
@@ -75,6 +88,7 @@ input[type="search"] {
   }
 }
 
+// date
 .date>.form-group.d-flex {
   label {
     font-size: 1rem;
@@ -87,6 +101,7 @@ input[type="search"] {
   }
 }
 
+// categories
 .categories {
   .form-check {
     padding: 0;
@@ -129,6 +144,112 @@ section {
   height: 500px;
   font-size: 1rem;
   font-weight: 400;
-  color: $black;
-  text-align: right;
+  color: $black; // text-align: right;
+  .show-result-text {
+    font-weight: 400;
+    font-size: 1.5rem;
+    line-height: 28px;
+    color: $black;
+    >span {
+      color: $purple-l;
+    }
+  }
+}
+
+// badge
+.badge-area {
+  margin-top: 8px;
+  div {
+    display: inline-block;
+    height: 35px;
+    border: 1px solid $purple-l;
+    border-radius: 100px;
+    line-height: 1rem;
+    font-size: 1rem;
+    font-style: italic;
+    text-align: left;
+    padding: 8px 2.2rem 8px 1rem;
+    color: $purple-l;
+    transition: background-color .3s;
+    cursor: default;
+    &:hover {
+      background-color: $purple-l;
+      color: $white;
+      &>a>i {
+        color: $white;
+      }
+    }
+    i {
+      line-height: 1rem;
+      margin-left: 8px;
+      color: $purple-l;
+    }
+  }
+}
+
+// 顯示區
+section>ul {
+  li {
+    min-height: 220px;
+    transition: box-shadow .3s;
+    cursor: pointer;
+    &:hover {
+      box-shadow: 0px 2px 5px $gray-3;
+    }
+  }
+}
+
+// 圖片
+.picture {
+  display: inline-block;
+  flex: 0 0 220px;
+  min-height: 220px; // background-image: url(http://placehold.it/420x420);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+// 資訊
+.info {
+  display: inline-block;
+  width: 100%;
+  min-height: 220px;
+  padding: 1.5rem 1.25rem;
+  /* 標題 */
+  h2 {
+    font-size: 1.5rem;
+    line-height: 2.25rem;
+  }
+  /* 簡述 */
+  p {
+    height: 50px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.5rem;
+  }
+  /* 標籤 */
+  .badge {
+    height: 1.5rem;
+    border-radius: 100px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    line-height: 1rem;
+    font-style: italic;
+    font-size: 1rem;
+  }
+  /* 時間地點 */
+  div>i {
+    font-size: 15px;
+    transform: translateY(3px);
+  }
+  .text-gray-4 {
+    color: $gray-4;
+    padding-left: 1rem;
+    margin-left: 5px;
+  }
+}
+
+// page
+.page-item.active .page-link {
+  background-color: $purple-l;
 }

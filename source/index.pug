@@ -15,11 +15,11 @@ html(lang="en")
       //- header
       header.bg-primary.d-flex.align-items-center
         .container
-          .row
-            .col-3.sidebar-px
+          .d-flex
+            .logo.block-px
               a(href="index.html")
                 img(src='images/logo.svg', width='157', height='44')
-            .col-9
+            .block-px
               form.form-inline.my-2.my-lg-0.position-relative
                 i.fas.fa-search
                 input.form-control.mr-sm-2(type='search', placeholder='Explore your own activities', aria-label='Search')
@@ -27,14 +27,13 @@ html(lang="en")
       //- main
       main
         .container
-          .row
-
+          .d-flex
             //- sidebar
             .sidebar.sticky-top
               form(action="", method="post")
 
                 //- location
-                .location.form-group.sidebar-px.py-4.mb-0.border-bottom
+                .location.form-group.block-px.py-4.mb-0.border-bottom
                   label(for="location") Location
                   select.custom-select(required='')#location
                     option(value='Taiwan') Taiwan
@@ -43,7 +42,7 @@ html(lang="en")
                     option(value='3') Three
 
                 //- date
-                .date.form-group.sidebar-px.py-4.mb-0.border-bottom
+                .date.form-group.block-px.py-4.mb-0.border-bottom
                   label() Date
                   .form-group.d-flex.align-items-center
                     label.ml-auto.mr-2(for='inputFrom') from
@@ -53,7 +52,7 @@ html(lang="en")
                     input#inputTo.form-control(type='date')
 
                 //- categories
-                .categories.form-group.sidebar-px.py-4.mb-0
+                .categories.form-group.block-px.py-4.mb-0
                   label(for="categories") Categories
                   .form-check
                     input#categories1.form-check-input(type='checkbox', name='categories', value='all')
@@ -77,5 +76,106 @@ html(lang="en")
                       | Outdoors
 
             //- section
-            section.col-9
+            section.d-flex.flex-column.ml-auto.w-100.block-px.py-4
+              .show-result-text Showing 
+                | 
+                span.font-weight-bold 15 
+                | results by…
+
+              //- 標籤
+              .badge-area
+                div.font-weight-light.mr-1 Koahsiung
+                  a(href="#")
+                    i.far.fa-times-circle.fa-sm
+                div.font-weight-light.mr-1 Entertainment
+                  a(href="#")
+                    i.far.fa-times-circle.fa-sm
+
+              //- 顯示區
+              ul.pl-0
+                li.w-100.bg-white.mt-4
+                  a(href="#").d-flex
+                    div.picture(style="background-image: url(http://lorempixel.com/640/480/nature);")
+                    div.info
+                      h2.text-secondary.font-weight-bold Kogi Cosby sweater ethical.
+                      p Donec euismod scelerisque ligula. Maecenas eu varius risus, eu aliquet arcu. Curabitur fermentum suscipit est, tincidunt mattis lorem luctus id. Donec eget massa a diam condimentum pretium. Aliquam erat volutpat. Integer ut tincidunt orci. Etiam tristique, elit ut consectetur iaculis, metus lectus mattis justo, vel mollis eros neque quis augue. Sed lobortis ultrices lacus, a placerat metus rutrum sit amet. Aenean ut suscipit justo.
+                      .d-flex
+
+                        //- 主辦單位
+                        span.font-weight-bold  Ethan Foster
+
+                        //- 分類標籤
+                        .badge.badge-light.text-white.font-weight-light.ml-3 Entertainment
+                      div.mt-3
+
+                        //- 地點
+                        i.fas.fa-map-marker-alt.text-dark
+                        span.text-gray-4.mr-4 Kaohsiung City
+
+                        //- 時間
+                        i.far.fa-calendar-alt.text-dark
+                        span.text-gray-4.mr-4 2018/5/24 - 2018/5/31
+                li.w-100.bg-white.mt-4
+                  a(href="#").d-flex
+                    div.picture(style="background-image: url(http://lorempixel.com/640/480/nature);")
+                    div.info
+                      h2.text-secondary.font-weight-bold Kogi Cosby sweater ethical.
+                      p Donec euismod scelerisque ligula. Maecenas eu varius risus, eu aliquet arcu. Curabitur fermentum suscipit est, tincidunt mattis lorem luctus id. Donec eget massa a diam condimentum pretium. Aliquam erat volutpat. Integer ut tincidunt orci. Etiam tristique, elit ut consectetur iaculis, metus lectus mattis justo, vel mollis eros neque quis augue. Sed lobortis ultrices lacus, a placerat metus rutrum sit amet. Aenean ut suscipit justo.
+                      .d-flex
+
+                        //- 主辦單位
+                        span.font-weight-bold  Ethan Foster
+
+                        //- 分類標籤
+                        .badge.badge-light.text-white.font-weight-light.ml-3 Entertainment
+                      div.mt-3
+
+                        //- 地點
+                        i.fas.fa-map-marker-alt.text-dark
+                        span.text-gray-4.mr-4 Kaohsiung City
+
+                        //- 時間
+                        i.far.fa-calendar-alt.text-dark
+                        span.text-gray-4.mr-4 2018/5/24 - 2018/5/31
+                li.w-100.bg-white.mt-4
+                  a(href="#").d-flex
+                    div.picture(style="background-image: url(http://lorempixel.com/640/480/nature);")
+                    div.info
+                      h2.text-secondary.font-weight-bold Kogi Cosby sweater ethical.
+                      p Donec euismod scelerisque ligula. Maecenas eu varius risus, eu aliquet arcu. Curabitur fermentum suscipit est, tincidunt mattis lorem luctus id. Donec eget massa a diam condimentum pretium. Aliquam erat volutpat. Integer ut tincidunt orci. Etiam tristique, elit ut consectetur iaculis, metus lectus mattis justo, vel mollis eros neque quis augue. Sed lobortis ultrices lacus, a placerat metus rutrum sit amet. Aenean ut suscipit justo.
+                      .d-flex
+
+                        //- 主辦單位
+                        span.font-weight-bold  Ethan Foster
+
+                        //- 分類標籤
+                        .badge.badge-light.text-white.font-weight-light.ml-3 Entertainment
+                      div.mt-3
+
+                        //- 地點
+                        i.fas.fa-map-marker-alt.text-dark
+                        span.text-gray-4.mr-4 Kaohsiung City
+
+                        //- 時間
+                        i.far.fa-calendar-alt.text-dark
+                        span.text-gray-4.mr-4 2018/5/24 - 2018/5/31
+                
+
+              //- 分頁
+              nav(aria-label='Page navigation').ml-auto
+                ul.pagination
+                  li.page-item
+                    a.page-link(href='#', aria-label='Previous')
+                      span(aria-hidden='true') «
+                      span.sr-only Previous
+                  li.page-item.active
+                    a.page-link(href='#') 1
+                  li.page-item
+                    a.page-link(href='#') 2
+                  li.page-item
+                    a.page-link(href='#') 3
+                  li.page-item
+                    a.page-link(href='#', aria-label='Next')
+                      span(aria-hidden='true') »
+                      span.sr-only Next              
     script(src="javascripts/vendor.js")
