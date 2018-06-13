@@ -14,22 +14,22 @@ html(lang="en")
     #app
       //- header
       header.bg-primary.d-flex.align-items-center
-        .container
-          .d-flex
+        .container-m.w-100
+          .d-flex.flex-column.flex-sm-row
             .logo.block-px
               a(href="index.html")
                 img(src='images/logo.svg', width='157', height='44')
-            .block-px
-              form.form-inline.my-2.my-lg-0.position-relative
+            .search-bar.block-px.mr-auto
+              form.form-inline.my-lg-0.position-relative
                 i.fas.fa-search
                 input.form-control.mr-sm-2(type='search', placeholder='Explore your own activities', aria-label='Search')
 
       //- main
       main
-        .container
+        .container-m
           .d-flex
             //- sidebar
-            .sidebar.sticky-top
+            .sidebar.sticky-top.d-none.d-sm-block
               form(action="", method="post")
 
                 //- location
@@ -77,13 +77,13 @@ html(lang="en")
 
             //- section
             section.d-flex.flex-column.ml-auto.w-100.block-px.py-4
-              .show-result-text Showing 
+              .show-result-text.d-none.d-sm-block Showing 
                 | 
                 span.font-weight-bold 15 
                 | results by…
 
               //- 標籤
-              .badge-area
+              .badge-area.d-none.d-sm-block
                 div.font-weight-light.mr-1 Koahsiung
                   a(href="#")
                     i.far.fa-times-circle.fa-sm
@@ -93,76 +93,33 @@ html(lang="en")
 
               //- 顯示區
               ul.pl-0
-                li.w-100.bg-white.mt-4
-                  a(href="#").d-flex
-                    div.picture(style="background-image: url(http://lorempixel.com/640/480/nature);")
-                    div.info
+                li.bg-white.mt-4
+                  a(href="#").d-flex.flex-column.flex-md-row
+                    div.picture(style="background-image: url(http://c1.peakpx.com/wallpaper/861/586/496/chicago-illinois-city-urban-skyline-wallpaper-thumb.jpg);")
+                    div.info.d-flex.flex-column.justify-content-between
                       h2.text-secondary.font-weight-bold Kogi Cosby sweater ethical.
                       p Donec euismod scelerisque ligula. Maecenas eu varius risus, eu aliquet arcu. Curabitur fermentum suscipit est, tincidunt mattis lorem luctus id. Donec eget massa a diam condimentum pretium. Aliquam erat volutpat. Integer ut tincidunt orci. Etiam tristique, elit ut consectetur iaculis, metus lectus mattis justo, vel mollis eros neque quis augue. Sed lobortis ultrices lacus, a placerat metus rutrum sit amet. Aenean ut suscipit justo.
-                      .d-flex
+                      div
 
                         //- 主辦單位
-                        span.font-weight-bold  Ethan Foster
+                        span.font-weight-bold.mr-3.d-block.d-md-inline-block  Ethan Foster
 
                         //- 分類標籤
-                        .badge.badge-light.text-white.font-weight-light.ml-3 Entertainment
+                        .badge.badge-light.text-white.font-weight-light.mr-3.d-inline-block Entertainment
                       div.mt-3
 
                         //- 地點
-                        i.fas.fa-map-marker-alt.text-dark
-                        span.text-gray-4.mr-4 Kaohsiung City
+                        div.d-block.d-lg-inline-block
+                          i.fas.fa-map-marker-alt.text-dark
+                          span.text-gray-4.mr-4 Kaohsiung City
 
                         //- 時間
-                        i.far.fa-calendar-alt.text-dark
-                        span.text-gray-4.mr-4 2018/5/24 - 2018/5/31
-                li.w-100.bg-white.mt-4
-                  a(href="#").d-flex
-                    div.picture(style="background-image: url(http://lorempixel.com/640/480/nature);")
-                    div.info
-                      h2.text-secondary.font-weight-bold Kogi Cosby sweater ethical.
-                      p Donec euismod scelerisque ligula. Maecenas eu varius risus, eu aliquet arcu. Curabitur fermentum suscipit est, tincidunt mattis lorem luctus id. Donec eget massa a diam condimentum pretium. Aliquam erat volutpat. Integer ut tincidunt orci. Etiam tristique, elit ut consectetur iaculis, metus lectus mattis justo, vel mollis eros neque quis augue. Sed lobortis ultrices lacus, a placerat metus rutrum sit amet. Aenean ut suscipit justo.
-                      .d-flex
-
-                        //- 主辦單位
-                        span.font-weight-bold  Ethan Foster
-
-                        //- 分類標籤
-                        .badge.badge-light.text-white.font-weight-light.ml-3 Entertainment
-                      div.mt-3
-
-                        //- 地點
-                        i.fas.fa-map-marker-alt.text-dark
-                        span.text-gray-4.mr-4 Kaohsiung City
-
-                        //- 時間
-                        i.far.fa-calendar-alt.text-dark
-                        span.text-gray-4.mr-4 2018/5/24 - 2018/5/31
-                li.w-100.bg-white.mt-4
-                  a(href="#").d-flex
-                    div.picture(style="background-image: url(http://lorempixel.com/640/480/nature);")
-                    div.info
-                      h2.text-secondary.font-weight-bold Kogi Cosby sweater ethical.
-                      p Donec euismod scelerisque ligula. Maecenas eu varius risus, eu aliquet arcu. Curabitur fermentum suscipit est, tincidunt mattis lorem luctus id. Donec eget massa a diam condimentum pretium. Aliquam erat volutpat. Integer ut tincidunt orci. Etiam tristique, elit ut consectetur iaculis, metus lectus mattis justo, vel mollis eros neque quis augue. Sed lobortis ultrices lacus, a placerat metus rutrum sit amet. Aenean ut suscipit justo.
-                      .d-flex
-
-                        //- 主辦單位
-                        span.font-weight-bold  Ethan Foster
-
-                        //- 分類標籤
-                        .badge.badge-light.text-white.font-weight-light.ml-3 Entertainment
-                      div.mt-3
-
-                        //- 地點
-                        i.fas.fa-map-marker-alt.text-dark
-                        span.text-gray-4.mr-4 Kaohsiung City
-
-                        //- 時間
-                        i.far.fa-calendar-alt.text-dark
-                        span.text-gray-4.mr-4 2018/5/24 - 2018/5/31
-                
+                        div.d-block.d-lg-inline-block.mt-1
+                          i.far.fa-calendar-alt.text-dark
+                          span.text-gray-4.mr-4 2018/5/24 - 2018/5/31
 
               //- 分頁
-              nav(aria-label='Page navigation').ml-auto
+              nav(aria-label='Page navigation').mx-auto.mr-sm-0
                 ul.pagination
                   li.page-item
                     a.page-link(href='#', aria-label='Previous')

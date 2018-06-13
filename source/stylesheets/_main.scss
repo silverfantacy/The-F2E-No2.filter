@@ -1,7 +1,6 @@
 body {
-  font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Microsoft JhengHei", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  text-align: justify;
-  text-justify: auto;
+  font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Microsoft JhengHei", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; // text-align: justify;
+  // text-justify: auto;
   background-color: $gray-1;
   line-height: 1.5rem;
 }
@@ -19,23 +18,57 @@ ul {
   list-style-type: none;
 }
 
+.container-m {
+  max-width: 1200px;
+  margin: 0 auto;
+  @include media-breakpoint-down(lg) {
+    padding: 0px;
+    margin: 0px;
+  }
+}
+
 /*==== header ====*/
 
 header {
-  height: 92px;
+  min-height: 92px;
 }
 
 // .logo
 .logo {
   flex: 0 0 300px;
+  @include media-breakpoint-down(sm) {
+    flex: 0;
+    width: 100%;
+    height: 69px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 // search
-i {
-  color: $white;
-  position: absolute;
-  font-size: 20px;
+.search-bar {
+  flex: 1 1 900px;
+  @include media-breakpoint-down(sm) {
+    flex: 0;
+    width: 100%;
+    height: 55px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $gray-2;
+  }
+  i {
+    color: $white;
+    position: absolute;
+    font-size: 20px;
+    @include media-breakpoint-down(sm) {
+      color: $black;
+      transform: translateY(-5px);
+    }
+  }
 }
+
 
 input[type="search"] {
   min-width: 388px;
@@ -44,15 +77,21 @@ input[type="search"] {
   line-height: 44px;
   color: $white;
   background: none;
-  margin-right: 8px;
   font-size: 20px;
   font-style: italic;
   font-weight: 300;
   border: none;
   border-bottom: 1px solid $white;
   border-radius: 0px;
+  @include media-breakpoint-down(sm) {
+    border-bottom: 1px solid $black;
+    transform: translateY(-5px);
+  }
   &::placeholder {
-    color: rgba(255, 255, 255, 0.50);
+    color: $gray-4;
+    @include media-breakpoint-down(sm) {
+      color: $black;
+    }
   }
   &:focus {
     background: none;
@@ -168,7 +207,7 @@ section {
     font-size: 1rem;
     font-style: italic;
     text-align: left;
-    padding: 8px 2.2rem 8px 1rem;
+    padding: 8px 1rem;
     color: $purple-l;
     transition: background-color .3s;
     cursor: default;
@@ -193,13 +232,12 @@ section>ul {
     min-height: 220px;
     transition: box-shadow .3s;
     cursor: pointer;
+    @include media-breakpoint-down(md) {}
     &:hover {
       box-shadow: 0px 2px 5px $gray-3;
     }
   }
-}
-
-// 圖片
+} // 圖片
 .picture {
   display: inline-block;
   flex: 0 0 220px;
@@ -207,13 +245,11 @@ section>ul {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-}
-
-// 資訊
+  @include media-breakpoint-down(md) {}
+} // 資訊
 .info {
-  display: inline-block;
-  width: 100%;
-  min-height: 220px;
+  display: inline-block; // width: 100%;
+  // min-height: 220px;
   padding: 1.5rem 1.25rem;
   /* 標題 */
   h2 {
@@ -226,6 +262,7 @@ section>ul {
     overflow: hidden;
     text-overflow: ellipsis;
     line-height: 1.5rem;
+    color: $black;
   }
   /* 標籤 */
   .badge {
@@ -240,16 +277,14 @@ section>ul {
   /* 時間地點 */
   div>i {
     font-size: 15px;
-    transform: translateY(3px);
+    transform: translateY(4px);
   }
   .text-gray-4 {
     color: $gray-4;
     padding-left: 1rem;
     margin-left: 5px;
   }
-}
-
-// page
+} // page
 .page-item.active .page-link {
   background-color: $purple-l;
 }
