@@ -13,11 +13,11 @@
   <body>
     <div id="app">
       <header class="bg-primary d-flex align-items-center">
-        <div class="container">
-          <div class="d-flex">
+        <div class="container-m w-100">
+          <div class="d-flex flex-column flex-sm-row">
             <div class="logo block-px"><a href="index.html"><img src="images/logo.svg" width="157" height="44"/></a></div>
-            <div class="block-px">
-              <form class="form-inline my-2 my-lg-0 position-relative"><i class="fas fa-search"></i>
+            <div class="search-bar block-px mr-auto">
+              <form class="form-inline my-lg-0 position-relative"><i class="fas fa-search"></i>
                 <input class="form-control mr-sm-2" type="search" placeholder="Explore your own activities" aria-label="Search"/>
               </form>
             </div>
@@ -25,9 +25,9 @@
         </div>
       </header>
       <main>
-        <div class="container">
-          <div class="d-flex">
-            <div class="sidebar sticky-top">
+        <div class="container-m">
+          <div class="d-flex flex-column flex-sm-row">
+            <div class="sidebar sticky-top d-none d-sm-block">
               <form action="" method="post">
                 <div class="location form-group block-px py-4 mb-0 border-bottom">
                   <label for="location">Location</label>
@@ -74,46 +74,82 @@
                 </div>
               </form>
             </div>
+            <div class="sidebar-sm d-flex flex-row d-sm-none">
+              <form class="d-flex flex-column w-100" action="" method="post">
+                <div class="location form-group block-px py-4 mb-0 border-bottom"><a data-toggle="collapse" data-target="#locationBtn">
+                    <label for="location">Location</label></a>
+                  <div class="collapse" id="locationBtn">
+                    <select class="custom-select" required="" id="location">
+                      <option value="Taiwan">Taiwan</option>
+                      <option value="Japan">Japan</option>
+                      <option value="2">Two</option>
+                      <option value="3">Three</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="date form-group block-px py-4 mb-0 border-bottom"><a data-toggle="collapse" data-target="#dateBtn">
+                    <label class="d-flex">Date</label></a>
+                  <div class="collapse" id="dateBtn">
+                    <div class="form-group d-inline-block align-items-center d-sm-flex w-100">
+                      <label class="ml-auto mr-2" for="inputFrom">from</label>
+                      <input class="form-control" id="inputFrom" type="date"/>
+                    </div>
+                    <div class="form-group d-inline-block align-items-center d-sm-flex w-100">
+                      <label class="ml-auto mr-2" for="inputTo">to</label>
+                      <input class="form-control" id="inputTo" type="date"/>
+                    </div>
+                  </div>
+                </div>
+                <div class="categories form-group block-px py-4 mb-0"><a data-toggle="collapse" data-target="#categoriesBtn">
+                    <label for="categories">Categories</label></a>
+                  <div class="collapse" id="categoriesBtn">
+                    <div class="form-check">
+                      <input class="form-check-input" id="categories1" type="checkbox" name="categories" value="all"/>
+                      <label class="form-check-label" for="categories1">All</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" id="categories2" type="checkbox" name="categories" value="entertainment"/>
+                      <label class="form-check-label" for="categories2">Entertainment</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" id="categories3" type="checkbox" name="categories" value="food"/>
+                      <label class="form-check-label" for="categories3">Food</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" id="categories4" type="checkbox" name="categories" value="learning"/>
+                      <label class="form-check-label" for="categories4">Learning</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" id="categories5" type="checkbox" name="categories" value="outdoors"/>
+                      <label class="form-check-label" for="categories5">Outdoors</label>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
             <section class="d-flex flex-column ml-auto w-100 block-px py-4">
-              <div class="show-result-text">
+              <div class="show-result-text d-none d-sm-block">
                 Showing  <span class="font-weight-bold">15 </span>results by…</div>
-              <div class="badge-area">
+              <div class="badge-area d-none d-sm-block">
                 <div class="font-weight-light mr-1">Koahsiung<a href="#"><i class="far fa-times-circle fa-sm"></i></a></div>
                 <div class="font-weight-light mr-1">Entertainment<a href="#"><i class="far fa-times-circle fa-sm"></i></a></div>
               </div>
               <ul class="pl-0">
-                <li class="w-100 bg-white mt-4"><a class="d-flex" href="#">
-                    <div class="picture" style="background-image: url(http://lorempixel.com/640/480/nature);"></div>
-                    <div class="info">
-                      <h2 class="text-secondary font-weight-bold">Kogi Cosby sweater ethical.</h2>
-                      <p>Donec euismod scelerisque ligula. Maecenas eu varius risus, eu aliquet arcu. Curabitur fermentum suscipit est, tincidunt mattis lorem luctus id. Donec eget massa a diam condimentum pretium. Aliquam erat volutpat. Integer ut tincidunt orci. Etiam tristique, elit ut consectetur iaculis, metus lectus mattis justo, vel mollis eros neque quis augue. Sed lobortis ultrices lacus, a placerat metus rutrum sit amet. Aenean ut suscipit justo.</p>
-                      <div class="d-flex"><span class="font-weight-bold"> Ethan Foster</span>
-                        <div class="badge badge-light text-white font-weight-light ml-3">Entertainment</div>
+                <li class="bg-white mt-4" v-for="item in originalData"><a class="d-flex flex-column flex-md-row" href="#">
+                    <div class="picture" :style="{ 'background-image' : 'url('+ item.Picture +')'}"></div>
+                    <div class="info d-flex flex-column justify-content-between">
+                      <h2 class="text-secondary font-weight-bold">{{ item.Name }}</h2>
+                      <p>{{ item.Description }}</p>
+                      <div> <span class="font-weight-bold mr-3 d-block d-md-inline-block" v-if="item.Ticketinfo != ''"> {{ item.Ticketinfo }}</span>
+                        <div class="badge badge-light text-white font-weight-light mr-3 d-inline-block">{{ item.Zone }}</div>
                       </div>
-                      <div class="mt-3"><i class="fas fa-map-marker-alt text-dark"></i><span class="text-gray-4 mr-4">Kaohsiung City</span><i class="far fa-calendar-alt text-dark"></i><span class="text-gray-4 mr-4">2018/5/24 - 2018/5/31</span></div>
-                    </div></a></li>
-                <li class="w-100 bg-white mt-4"><a class="d-flex" href="#">
-                    <div class="picture" style="background-image: url(http://lorempixel.com/640/480/nature);"></div>
-                    <div class="info">
-                      <h2 class="text-secondary font-weight-bold">Kogi Cosby sweater ethical.</h2>
-                      <p>Donec euismod scelerisque ligula. Maecenas eu varius risus, eu aliquet arcu. Curabitur fermentum suscipit est, tincidunt mattis lorem luctus id. Donec eget massa a diam condimentum pretium. Aliquam erat volutpat. Integer ut tincidunt orci. Etiam tristique, elit ut consectetur iaculis, metus lectus mattis justo, vel mollis eros neque quis augue. Sed lobortis ultrices lacus, a placerat metus rutrum sit amet. Aenean ut suscipit justo.</p>
-                      <div class="d-flex"><span class="font-weight-bold"> Ethan Foster</span>
-                        <div class="badge badge-light text-white font-weight-light ml-3">Entertainment</div>
+                      <div class="mt-3">
+                        <div class="d-block d-lg-inline-block"><i class="fas fa-map-marker-alt text-dark"></i><span class="text-gray-4 mr-4">{{ item.Add }}</span></div>
+                        <div class="d-block d-lg-inline-block mt-1"><i class="far fa-calendar-alt text-dark"></i><span class="text-gray-4 mr-4">{{ item.Opentime }}</span></div>
                       </div>
-                      <div class="mt-3"><i class="fas fa-map-marker-alt text-dark"></i><span class="text-gray-4 mr-4">Kaohsiung City</span><i class="far fa-calendar-alt text-dark"></i><span class="text-gray-4 mr-4">2018/5/24 - 2018/5/31</span></div>
-                    </div></a></li>
-                <li class="w-100 bg-white mt-4"><a class="d-flex" href="#">
-                    <div class="picture" style="background-image: url(http://lorempixel.com/640/480/nature);"></div>
-                    <div class="info">
-                      <h2 class="text-secondary font-weight-bold">Kogi Cosby sweater ethical.</h2>
-                      <p>Donec euismod scelerisque ligula. Maecenas eu varius risus, eu aliquet arcu. Curabitur fermentum suscipit est, tincidunt mattis lorem luctus id. Donec eget massa a diam condimentum pretium. Aliquam erat volutpat. Integer ut tincidunt orci. Etiam tristique, elit ut consectetur iaculis, metus lectus mattis justo, vel mollis eros neque quis augue. Sed lobortis ultrices lacus, a placerat metus rutrum sit amet. Aenean ut suscipit justo.</p>
-                      <div class="d-flex"><span class="font-weight-bold"> Ethan Foster</span>
-                        <div class="badge badge-light text-white font-weight-light ml-3">Entertainment</div>
-                      </div>
-                      <div class="mt-3"><i class="fas fa-map-marker-alt text-dark"></i><span class="text-gray-4 mr-4">Kaohsiung City</span><i class="far fa-calendar-alt text-dark"></i><span class="text-gray-4 mr-4">2018/5/24 - 2018/5/31</span></div>
                     </div></a></li>
               </ul>
-              <nav class="ml-auto" aria-label="Page navigation">
+              <nav class="mx-auto mr-sm-0" aria-label="Page navigation">
                 <ul class="pagination">
                   <li class="page-item"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">«</span><span class="sr-only">Previous</span></a></li>
                   <li class="page-item active"><a class="page-link" href="#">1</a></li>
@@ -127,6 +163,8 @@
         </div>
       </main>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="javascripts/vendor.js"></script>
   </body>
 </html>
