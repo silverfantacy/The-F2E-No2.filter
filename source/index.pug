@@ -23,7 +23,7 @@ html(lang="en")
               form.form-inline.my-lg-0.position-relative
                 i.fas.fa-search
                 input.form-control.mr-sm-2(type='search', placeholder='Explore your own activities', aria-label='Search')
-
+              
       //- main
       main
         .container-m
@@ -145,31 +145,56 @@ html(lang="en")
 
               //- 顯示區
               ul.pl-0
-                li.bg-white.mt-4
+                li.bg-white.mt-4(v-for='item in originalData')
                   a(href="#").d-flex.flex-column.flex-md-row
-                    div.picture(style="background-image: url(http://c1.peakpx.com/wallpaper/861/586/496/chicago-illinois-city-urban-skyline-wallpaper-thumb.jpg);")
+                    div.picture(:style="{ 'background-image' : 'url('+ item.Picture +')'}")
                     div.info.d-flex.flex-column.justify-content-between
-                      h2.text-secondary.font-weight-bold Kogi Cosby sweater ethical.
-                      p Donec euismod scelerisque ligula. Maecenas eu varius risus, eu aliquet arcu. Curabitur fermentum suscipit est, tincidunt mattis lorem luctus id. Donec eget massa a diam condimentum pretium. Aliquam erat volutpat. Integer ut tincidunt orci. Etiam tristique, elit ut consectetur iaculis, metus lectus mattis justo, vel mollis eros neque quis augue. Sed lobortis ultrices lacus, a placerat metus rutrum sit amet. Aenean ut suscipit justo.
-                      div
+                      h2.text-secondary.font-weight-bold {{ item.Name }}
+                      p {{ item.Description }}
+                      div 
 
                         //- 主辦單位
-                        span.font-weight-bold.mr-3.d-block.d-md-inline-block  Ethan Foster
+                        span.font-weight-bold.mr-3.d-block.d-md-inline-block(v-if="item.Ticketinfo != ''")  {{ item.Ticketinfo }}
 
                         //- 分類標籤
-                        .badge.badge-light.text-white.font-weight-light.mr-3.d-inline-block Entertainment
+                        .badge.badge-light.text-white.font-weight-light.mr-3.d-inline-block {{ item.Zone }}
                       div.mt-3
 
                         //- 地點
                         div.d-block.d-lg-inline-block
                           i.fas.fa-map-marker-alt.text-dark
-                          span.text-gray-4.mr-4 Kaohsiung City
+                          span.text-gray-4.mr-4 {{ item.Add }}
 
                         //- 時間
                         div.d-block.d-lg-inline-block.mt-1
                           i.far.fa-calendar-alt.text-dark
-                          span.text-gray-4.mr-4 2018/5/24 - 2018/5/31
+                          span.text-gray-4.mr-4 {{ item.Opentime }}
+                //- 原始架構
+                //- li.bg-white.mt-4(v-for='item in originalData')
+                //-   a(href="#").d-flex.flex-column.flex-md-row
+                //-     div.picture(style="background-image: url(http://c1.peakpx.com/wallpaper/861/586/496/chicago-illinois-city-urban-skyline-wallpaper-thumb.jpg);")
+                //-     div.info.d-flex.flex-column.justify-content-between
+                //-       h2.text-secondary.font-weight-bold Kogi Cosby sweater ethical.
+                //-       p Donec euismod scelerisque ligula. Maecenas eu varius risus, eu aliquet arcu. Curabitur fermentum suscipit est, tincidunt mattis lorem luctus id. Donec eget massa a diam condimentum pretium. Aliquam erat volutpat. Integer ut tincidunt orci. Etiam tristique, elit ut consectetur iaculis, metus lectus mattis justo, vel mollis eros neque quis augue. Sed lobortis ultrices lacus, a placerat metus rutrum sit amet. Aenean ut suscipit justo.
+                //-       div
 
+                //-         //- 主辦單位
+                //-         span.font-weight-bold.mr-3.d-block.d-md-inline-block  Ethan Foster
+
+                //-         //- 分類標籤
+                //-         .badge.badge-light.text-white.font-weight-light.mr-3.d-inline-block Entertainment
+                //-       div.mt-3
+
+                //-         //- 地點
+                //-         div.d-block.d-lg-inline-block
+                //-           i.fas.fa-map-marker-alt.text-dark
+                //-           span.text-gray-4.mr-4 Kaohsiung City
+
+                //-         //- 時間
+                //-         div.d-block.d-lg-inline-block.mt-1
+                //-           i.far.fa-calendar-alt.text-dark
+                //-           span.text-gray-4.mr-4 2018/5/24 - 2018/5/31
+              
               //- 分頁
               nav(aria-label='Page navigation').mx-auto.mr-sm-0
                 ul.pagination
@@ -187,4 +212,7 @@ html(lang="en")
                     a.page-link(href='#', aria-label='Next')
                       span(aria-hidden='true') »
                       span.sr-only Next              
+              //- pre.w-100 {{ originalData }}
+    script(src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js")
+    script(src="https://unpkg.com/axios/dist/axios.min.js")
     script(src="javascripts/vendor.js")
