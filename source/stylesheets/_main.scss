@@ -69,7 +69,6 @@ header {
   }
 }
 
-
 input[type="search"] {
   min-width: 388px;
   height: 44px;
@@ -86,6 +85,7 @@ input[type="search"] {
   @include media-breakpoint-down(sm) {
     border-bottom: 1px solid $black;
     transform: translateY(-5px);
+    min-width: 300px;
   }
   &::placeholder {
     color: $gray-4;
@@ -113,6 +113,10 @@ input[type="search"] {
     border-radius: 2px;
     border: 0px;
   }
+}
+
+.sidebar-sm {
+  background-color: $gray-2;
 }
 
 .border-bottom {
@@ -211,6 +215,7 @@ section {
     color: $purple-l;
     transition: background-color .3s;
     cursor: default;
+    margin-top: 8px;
     &:hover {
       background-color: $purple-l;
       color: $white;

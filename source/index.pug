@@ -27,7 +27,7 @@ html(lang="en")
       //- main
       main
         .container-m
-          .d-flex
+          .d-flex.flex-column.flex-sm-row
             //- sidebar
             .sidebar.sticky-top.d-none.d-sm-block
               form(action="", method="post")
@@ -74,6 +74,58 @@ html(lang="en")
                     input#categories5.form-check-input(type='checkbox', name='categories', value='outdoors')
                     label.form-check-label(for='categories5')
                       | Outdoors
+            //- sidebar-sm
+            .sidebar-sm.d-flex.flex-row.d-sm-none
+              form(action="", method="post").d-flex.flex-column.w-100
+
+                //- location
+                .location.form-group.block-px.py-4.mb-0.border-bottom
+                  a(data-toggle='collapse', data-target='#locationBtn' )
+                    label(for="location") Location
+                  #locationBtn.collapse
+                    select.custom-select(required='')#location
+                      option(value='Taiwan') Taiwan
+                      option(value='Japan') Japan
+                      option(value='2') Two
+                      option(value='3') Three
+
+                //- date
+                .date.form-group.block-px.py-4.mb-0.border-bottom
+                  a(data-toggle='collapse', data-target='#dateBtn' )
+                    label().d-flex Date
+                  #dateBtn.collapse
+                    .form-group.d-inline-block.align-items-center.d-sm-flex.w-100
+                      label.ml-auto.mr-2(for='inputFrom') from
+                      input#inputFrom.form-control(type='date')
+                    .form-group.d-inline-block.align-items-center.d-sm-flex.w-100
+                      label.ml-auto.mr-2(for='inputTo') to
+                      input#inputTo.form-control(type='date')
+
+                //- categories
+                .categories.form-group.block-px.py-4.mb-0
+                  a(data-toggle='collapse', data-target='#categoriesBtn' )
+                    label(for="categories") Categories
+                  #categoriesBtn.collapse
+                    .form-check
+                      input#categories1.form-check-input(type='checkbox', name='categories', value='all')
+                      label.form-check-label(for='categories1')
+                        | All
+                    .form-check
+                      input#categories2.form-check-input(type='checkbox', name='categories', value='entertainment')
+                      label.form-check-label(for='categories2')
+                        | Entertainment
+                    .form-check
+                      input#categories3.form-check-input(type='checkbox', name='categories', value='food')
+                      label.form-check-label(for='categories3')
+                        | Food
+                    .form-check
+                      input#categories4.form-check-input(type='checkbox', name='categories', value='learning')
+                      label.form-check-label(for='categories4')
+                        | Learning
+                    .form-check
+                      input#categories5.form-check-input(type='checkbox', name='categories', value='outdoors')
+                      label.form-check-label(for='categories5')
+                        | Outdoors
 
             //- section
             section.d-flex.flex-column.ml-auto.w-100.block-px.py-4
