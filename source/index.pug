@@ -11,7 +11,7 @@ html(lang="en")
     script.
       FontAwesomeConfig = { searchPseudoElements: true };
   body
-    #app
+    #app 
       //- header
       header.bg-primary.d-flex.align-items-center
         .container-m.w-100
@@ -35,21 +35,21 @@ html(lang="en")
                 //- location
                 .location.form-group.block-px.py-4.mb-0.border-bottom
                   label(for="location") Location
-                  select.custom-select(required='')#location
-                    option(value='Taiwan') Taiwan
-                    option(value='Japan') Japan
-                    option(value='2') Two
-                    option(value='3') Three
+                  select.custom-select(required='',v-model="selectZone",@change="reSetPage();")#location
+                    option(value='all') 全部
+                    option(v-for="item in locationName" :value="item") {{ item }}
+                    //- option(value='2') Two
+                    //- option(value='3') Three
 
                 //- date
-                .date.form-group.block-px.py-4.mb-0.border-bottom
-                  label() Date
-                  .form-group.d-flex.align-items-center
-                    label.ml-auto.mr-2(for='inputFrom') from
-                    input#inputFrom.form-control(type='date')
-                  .form-group.d-flex.align-items-center
-                    label.ml-auto.mr-2(for='inputTo') to
-                    input#inputTo.form-control(type='date')
+                //- .date.form-group.block-px.py-4.mb-0.border-bottom
+                //-   label() Date
+                //-   .form-group.d-flex.align-items-center
+                //-     label.ml-auto.mr-2(for='inputFrom') from
+                //-     input#inputFrom.form-control(type='date')
+                //-   .form-group.d-flex.align-items-center
+                //-     label.ml-auto.mr-2(for='inputTo') to
+                //-     input#inputTo.form-control(type='date')
 
                 //- categories
                 .categories.form-group.block-px.py-4.mb-0
@@ -131,7 +131,7 @@ html(lang="en")
             section.d-flex.flex-column.ml-auto.w-100.block-px.py-4
               .show-result-text.d-none.d-sm-block Showing 
                 | 
-                span.font-weight-bold 15 
+                span.font-weight-bold {{filterData.length}} 
                 | results by…
 
               //- 標籤
@@ -145,7 +145,8 @@ html(lang="en")
 
               //- 顯示區
               ul.pl-0
-                li.bg-white.mt-4(v-for='item in originalData')
+                //- originalData >> filterData >> showPageList
+                li.bg-white.mt-4(v-for='item in showPageList')
                   a(href="#").d-flex.flex-column.flex-md-row
                     div.picture(:style="{ 'background-image' : 'url('+ item.Picture +')'}")
                     div.info.d-flex.flex-column.justify-content-between
@@ -199,17 +200,19 @@ html(lang="en")
               nav(aria-label='Page navigation').mx-auto.mr-sm-0
                 ul.pagination
                   li.page-item
-                    a.page-link(href='#', aria-label='Previous')
+                    a.page-link(href='#', aria-label='Previous',v-bind:class="{'disabled': (currPage === 1)}", @click.prevent='setPage(currPage-1)')
                       span(aria-hidden='true') «
                       span.sr-only Previous
-                  li.page-item.active
-                    a.page-link(href='#') 1
+                  li.page-item(v-for='n in totalPages', v-bind:class="{'active': (currPage === (n))}", @click.prevent='setPage(n)')
+                    a.page-link(href='#') {{n}}
+                  //- li.page-item.active
+                  //-   a.page-link(href='#') 1
+                  //- li.page-item
+                  //-   a.page-link(href='#') 2
+                  //- li.page-item
+                  //-   a.page-link(href='#') 3
                   li.page-item
-                    a.page-link(href='#') 2
-                  li.page-item
-                    a.page-link(href='#') 3
-                  li.page-item
-                    a.page-link(href='#', aria-label='Next')
+                    a.page-link(href='#', aria-label='Next',v-bind:class="{'disabled': (currPage === totalPages)}", @click.prevent='setPage(currPage+1)')
                       span(aria-hidden='true') »
                       span.sr-only Next              
               //- pre.w-100 {{ originalData }}
