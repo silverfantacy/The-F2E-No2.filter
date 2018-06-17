@@ -16,7 +16,13 @@ Vue.prototype.$http = axios;
 var app = new Vue({
   el: '#app',
   data: {
-    originalData: []
+    originalData: [], //原始資料
+    selectZone: "all",//地區選單
+    pageList: [], // 每頁的資料
+    countOfPage: 10, // 一頁顯示20筆
+    currPage: 1, // 當前頁數
+    totalPages: 0, // 每個總頁數的數字
+    nowPages: 0
   },
   // test: {
   //   Add: "高雄市三民區建國二路318號",
@@ -47,11 +53,13 @@ var app = new Vue({
   created: function () {
     // 先執行預設 function (下行打開就可以看到內容嘍)
     this.getData();
+    // this.showPageList(); 
+    // this.totalPage(pageStart);
   },
   methods: {
     // axios取得原始資料
     getData: function () {
-      let vm =this;
+      let vm = this;
       vm.$http.get($ApiURL)
         .then(function (response) {
           // console.log(response);
@@ -83,6 +91,97 @@ var app = new Vue({
         .catch(function (error) {
           console.log(error);
         });
+    },
+
+    // 分頁切換
+    setPage: function (index) {
+      // index就是html的n
+      let vm = this;
+      if (index <= 0 || index > vm.totalPages) {
+        return;
+      }
+      vm.currPage = index;
+    },
+
+    // 重置起始頁
+    reSetPage: function () {
+      let vm = this;
+      vm.currPage = 1;
+    },
+
+  },
+  computed: {
+
+    // 區域列表
+    locationName: function () {
+      let vm = this;
+      var str = '';
+      var zoneName = [];
+      // 取出所有地區
+      for (i = 0; i < vm.originalData.length; i++) {
+        // console.log(vm.originalData.length);
+        str = vm.originalData[i].Zone;
+        zoneName.push(str);
+      }
+      // console.log(zoneName);
+
+      //篩選
+      var result = zoneName.filter(function (element, index, arr) {
+        return arr.indexOf(element) === index;
+      });
+      // var repeat = zoneName.filter(function (element, index, arr) {
+      //   return arr.indexOf(element) !== index;
+      // });
+      // console.log(result); // 個別
+      // console.log(repeat); // 全部
+      return result;
+    },
+
+    // 篩選地區
+    filterData: function () {
+      let vm = this;
+      switch (vm.selectZone) {
+        case 'all':
+          return vm.originalData;
+          break;
+        case vm.selectZone:
+          var newData = [];
+          vm.originalData.forEach(
+            function (item) {
+              if (item.Zone == vm.selectZone) {
+                newData.push(item);
+              }
+            }
+          );
+          return newData;
+          break;
+      }
+    },
+
+    // 整理要顯示頁數的資料
+    showPageList: function () {
+      let vm = this;
+      vm.pageList = [];
+      // console.log(vm.filterData,vm.pageList)
+      // 計算總頁數(無條件捨棄)=總資料/每頁顯示幾筆
+      vm.totalPages = Math.ceil(vm.filterData.length / vm.countOfPage);
+      // console.log(vm.totalPages);
+
+      var start = vm.currPage * vm.countOfPage - vm.countOfPage;
+      // Start是開始時的陣列序號
+      var end = vm.currPage * vm.countOfPage;
+      // end是結束時的陣列序號
+      // console.log(start,end,vm.totalPages); 
+      //0,10,X
+
+      vm.filterData.forEach(function (item, i) {
+        // 0~9筆資料
+        if (i >= start && i < end) {
+          vm.pageList.push(item)
+        }
+      })
+      console.log(vm.pageList);
+      return vm.pageList;
     }
   }
 })

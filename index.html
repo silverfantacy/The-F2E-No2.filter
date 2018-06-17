@@ -11,7 +11,7 @@
     <script>FontAwesomeConfig = { searchPseudoElements: true };</script>
   </head>
   <body>
-    <div id="app">
+    <div id="app"> 
       <header class="bg-primary d-flex align-items-center">
         <div class="container-m w-100">
           <div class="d-flex flex-column flex-sm-row">
@@ -31,23 +31,10 @@
               <form action="" method="post">
                 <div class="location form-group block-px py-4 mb-0 border-bottom">
                   <label for="location">Location</label>
-                  <select class="custom-select" required="" id="location">
-                    <option value="Taiwan">Taiwan</option>
-                    <option value="Japan">Japan</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                  <select class="custom-select" required="" v-model="selectZone" @change="reSetPage();" id="location">
+                    <option value="all">全部</option>
+                    <option v-for="item in locationName" :value="item">{{ item }}</option>
                   </select>
-                </div>
-                <div class="date form-group block-px py-4 mb-0 border-bottom">
-                  <label>Date</label>
-                  <div class="form-group d-flex align-items-center">
-                    <label class="ml-auto mr-2" for="inputFrom">from</label>
-                    <input class="form-control" id="inputFrom" type="date"/>
-                  </div>
-                  <div class="form-group d-flex align-items-center">
-                    <label class="ml-auto mr-2" for="inputTo">to</label>
-                    <input class="form-control" id="inputTo" type="date"/>
-                  </div>
                 </div>
                 <div class="categories form-group block-px py-4 mb-0">
                   <label for="categories">Categories</label>
@@ -129,13 +116,13 @@
             </div>
             <section class="d-flex flex-column ml-auto w-100 block-px py-4">
               <div class="show-result-text d-none d-sm-block">
-                Showing  <span class="font-weight-bold">15 </span>results by…</div>
+                Showing  <span class="font-weight-bold">{{filterData.length}} </span>results by…</div>
               <div class="badge-area d-none d-sm-block">
                 <div class="font-weight-light mr-1">Koahsiung<a href="#"><i class="far fa-times-circle fa-sm"></i></a></div>
                 <div class="font-weight-light mr-1">Entertainment<a href="#"><i class="far fa-times-circle fa-sm"></i></a></div>
               </div>
               <ul class="pl-0">
-                <li class="bg-white mt-4" v-for="item in originalData"><a class="d-flex flex-column flex-md-row" href="#">
+                <li class="bg-white mt-4" v-for="item in showPageList"><a class="d-flex flex-column flex-md-row" href="#">
                     <div class="picture" :style="{ 'background-image' : 'url('+ item.Picture +')'}"></div>
                     <div class="info d-flex flex-column justify-content-between">
                       <h2 class="text-secondary font-weight-bold">{{ item.Name }}</h2>
@@ -151,11 +138,9 @@
               </ul>
               <nav class="mx-auto mr-sm-0" aria-label="Page navigation">
                 <ul class="pagination">
-                  <li class="page-item"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">«</span><span class="sr-only">Previous</span></a></li>
-                  <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                  <li class="page-item"><a class="page-link" href="#">2</a></li>
-                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-                  <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">»</span><span class="sr-only">Next              </span></a></li>
+                  <li class="page-item"><a class="page-link" href="#" aria-label="Previous" v-bind:class="{'disabled': (currPage === 1)}" @click.prevent="setPage(currPage-1)"><span aria-hidden="true">«</span><span class="sr-only">Previous</span></a></li>
+                  <li class="page-item" v-for="n in totalPages" v-bind:class="{'active': (currPage === (n))}" @click.prevent="setPage(n)"><a class="page-link" href="#">{{n}}</a></li>
+                  <li class="page-item"><a class="page-link" href="#" aria-label="Next" v-bind:class="{'disabled': (currPage === totalPages)}" @click.prevent="setPage(currPage+1)"><span aria-hidden="true">»</span><span class="sr-only">Next              </span></a></li>
                 </ul>
               </nav>
             </section>
